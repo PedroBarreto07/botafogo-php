@@ -26,6 +26,7 @@ $consulta = $conexao->query($sql);
 <th>Time</th>
 <th>Nome</th>
 <th>Títulos</th>
+<th>Excluir</th>
 </tr>
 
 <?php
@@ -37,6 +38,7 @@ while ($linha = $consulta->fetch(PDO::FETCH_OBJ)){
 <td><?php echo $linha->time ?></td>
 <td><?php echo $linha->nome ?></td>
 <td><?php echo $linha->titulos ?></td>
+<td><a href="excluir.php?id=">Excluir</a></td>
 </tr>
 
 <?php
