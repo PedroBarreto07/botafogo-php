@@ -14,3 +14,4 @@ Tecnologias:
 - PHP
 - MySQL
 - PDO
+- Excluir
