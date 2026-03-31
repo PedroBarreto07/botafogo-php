@@ -1,51 +1,55 @@
 <?php
-
 include 'conexao.php';
 
 $sql = "select * from botafogo";
 $consulta = $conexao->query($sql);
-
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-<meta charset="UTF-8">
-<title>Botafogo</title>
+    <meta charset="UTF-8">
+    <title>Botafogo</title>
 </head>
-
 <body>
 
-<h2>Jogadores do Botafogo</h2>
+    <h2>Cadastrar Ídolo</h2>
+    <form action="inserir.php" method="POST">
+        Nome: <input type="text" name="nome" required>
+        Títulos: <input type="number" name="titulos" required>
+        <input type="submit" value="Salvar">
+    </form>
+    
+    <br><hr><br>
 
-<table width="100%" border="1">
+    <h2>Jogadores do Botafogo</h2>
 
-<tr>
-<th>ID</th>
-<th>Time</th>
-<th>Nome</th>
-<th>Títulos</th>
-<th>Excluir</th>
-</tr>
+    <table width="100%" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Time</th>
+            <th>Nome</th>
+            <th>Títulos</th>
+            <th>Excluir</th>
+        </tr>
 
-<?php
-while ($linha = $consulta->fetch(PDO::FETCH_OBJ)){
-?>
+        <?php
+        while ($linha = $consulta->fetch(PDO::FETCH_OBJ)){
+        ?>
+        <tr>
+            <td><?php echo $linha->id ?></td>
+            <td><?php echo $linha->time ?></td>
+            <td><?php echo $linha->nome ?></td>
+            <td><?php echo $linha->titulos ?></td>
+            <td><a href="excluir.php?id=<?php echo $linha->id ?>">Excluir</a></td>
+        </tr>
+        <?php
+        }
+        ?>
+    </table>
 
-<tr>
-<td><?php echo $linha->id ?></td>
-<td><?php echo $linha->time ?></td>
-<td><?php echo $linha->nome ?></td>
-<td><?php echo $linha->titulos ?></td>
-<td><a href="excluir.php?id=">Excluir</a></td>
-</tr>
-
-<?php
-}
-?>
-
-</table>
+</body>
+</html>
 
 </body>
 </html>
