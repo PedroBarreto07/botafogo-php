@@ -1,8 +1,20 @@
 <?php
-include 'conexao.php';
 
-$sql = "select * from botafogo";
-$consulta = $conexao->query($sql);
+    include '../sessao.php';
+    include '../conexao.php';
+    
+    $sql = " SELECT * FROM botafogo ";
+    $consulta = $conexao->query($sql);
+
+    # Edição
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM botafogo WHERE id = :id";
+        $consultaUp = $conexao->prepare($sql);
+        $consultaUp->bindParam(':id', $id);
+        $consultaUp->execute();
+        $aluno = $consultaUp->fetch(PDO::FETCH_OBJ);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -50,17 +62,6 @@ $consulta = $conexao->query($sql);
 
 </body>
 </html>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
-    <form action="logar.php" method="post">
-        E-mail: <input type="email" name="email" required>
-        Senha: <input type="password" name="senha" required>
-        <input type="submit" value="Entrar">
-        <input type="reset" value="Limpar">
-    </form>
 
 </body>
 </html>
